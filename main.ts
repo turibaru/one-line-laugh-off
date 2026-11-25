@@ -6,6 +6,10 @@ import { fileURLToPath } from "node:url";
 // Read it at runtime, check the gate, and hand the grader exactly what it says.
 // A line is only funny if it arrives intact — no trimming the punchline away.
 // If the line breaks the rules, fail loudly instead of shipping a silent dud.
+// The file itself stays dumb on purpose: the joke is data, this file is plumbing.
+// A trailing newline is just file formatting, so strip it before measuring the line.
+// The length check is the whole quality gate — short enough to land, long enough to exist.
+// Output goes wherever the grader points us, created on demand if it is not there yet.
 
 const entryPath = join(dirname(fileURLToPath(import.meta.url)), "entry.txt");
 const raw = readFileSync(entryPath, "utf8");
